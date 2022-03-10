@@ -63,9 +63,25 @@ Csym = ([[6.815,1.071,0.935,2.214,1.229,0.939,0.5025,0.20498,0.0837,0.01194],
          [0.234973,0.79023,1.64042,1.8801,1.0585,1.13766,0.8633,0.5832,1.362,\
           1.00253]])
 
+cnt = {}
+cntransicao = {}
+
+tS0 = tuple(S0)
+tE0 = tuple(E0)
+tPreSym = tuple(PreSym)
+tAsym = tuple(Asym)
+tMild = tuple(Mild)
+tSeve = tuple(Seve)
+tHosp = tuple(Hosp)
+tICU = tuple(ICU)
+tRecov = tuple(Recov)
+tDeceas = tuple (Deceas)
+
+t0 = tuple([tS0,tE0,tPreSym,tAsym,tMild,tSeve,tHosp,tICU,tRecov,tDeceas])
+cnt[t0]=1
 
 t=0
-for t in range (100):
+for t in range (2):
         pstar = [] 
         E1 = []
         IPreSym1 = []
@@ -183,8 +199,40 @@ for t in range (100):
             
             Deceas2New = []
             Deceas2New = Deceas[j] + DHosp1[j] + DICU1[j]
-            Deceas2[j] = Deceas2New         
-                                    
+            Deceas2[j] = Deceas2New   
+            
+        tS0 = tuple(S0)
+        tE0 = tuple(E0)
+        tPreSym = tuple(PreSym)
+        tAsym = tuple(Asym)
+        tMild = tuple(Mild)
+        tSeve = tuple(Seve)
+        tHosp = tuple(Hosp)
+        tICU = tuple(ICU)
+        tRecov = tuple(Recov)
+        tDeceas = tuple (Deceas)
+        
+        tS2 = tuple(S2)
+        tE2 = tuple(E2)
+        tPreSym2 = tuple(PreSym2)
+        tAsym2 = tuple(Asym2)
+        tMild2 = tuple(Mild2)
+        tSeve2 = tuple(Seve2)
+        tHosp2 = tuple(Hosp2)
+        tICU2 = tuple(ICU2)
+        tRecov2 = tuple(Recov2)
+        tDeceas2 = tuple (Deceas2)
+
+        ttrans = tuple([tS0,tE0,tPreSym,tAsym,tMild,tSeve,tHosp,tICU,tRecov,tDeceas\
+                       ,tS2,tE2,tPreSym2,tAsym2,tMild2,tSeve2,tHosp2,tICU2,tRecov2\
+                         ,tDeceas])
+        
+        if ttrans in cntransicao:
+            cntransicao[ttrans]+=1
+        
+        else:
+            cntransicao[ttrans]=1
+        
                                   
         S0 = S2
         E0 = E2
@@ -197,23 +245,44 @@ for t in range (100):
         Recov = Recov2
         Deceas = Deceas2 
         
-        print ("step",t+1)
-        print (S0,"Suscetiveis:",E0,"Expostos:",PreSym,"Pré-Sintomáticos",\
-               Asym,"Assintomáticos",Mild,"Mild:",Seve,"Sevear:",Hosp,\
-                   "Hospitalizados:",ICU,"ICU:",Recov,"Recuperados:",Deceas,\
-                       "Perdas:")
-        
+        tS0 = tuple(S0)
+        tE0 = tuple(E0)
+        tPreSym = tuple(PreSym)
+        tAsym = tuple(Asym)
+        tMild = tuple(Mild)
+        tSeve = tuple(Seve)
+        tHosp = tuple(Hosp)
+        tICU = tuple(ICU)
+        tRecov = tuple(Recov)
+        tDeceas = tuple (Deceas)
 
+        t0 = tuple([tS0,tE0,tPreSym,tAsym,tMild,tSeve,tHosp,tICU,tRecov,tDeceas])
+        
+        if t0 in cnt:
+            cnt[t0]+=1
+            
+        else:
+            cnt[t0]=1
+
+
+"""        
+        print ("step",t+1)
+        print ("Suscetiveis:",S0,"Expostos:",E0,"Pré-Sintomáticos",PreSym,\
+               "Assintomáticos",Asym,"Mild:",Mild,"Sevear:",Seve,"Hospitaliza"\
+                   "dos:",Hosp,"ICU:",ICU,"Recuperados:",Recov,"Perdas:",Deceas)
+ """       
 
 k=[]
 for l in range (10):
     h = S0[l]+E0[l]+PreSym[l]+Asym[l]+Mild[l]+Seve[l]+Hosp[l]+ICU[l]+Recov[l]+Deceas[l]
     k += [h]
     
-print (k)
+
 
 pessoastotal = 0
 mortes =0
+
+
 for p in range (10):
     pessoastotal += k[p]
 
@@ -221,3 +290,37 @@ for i in range (10):
     mortes += Deceas[i]
     
 mortalidade = (mortes / pessoastotal)*100
+
+
+
+
+
+"""
+s1 = [1,2]
+i1 =[2,3]
+ts1 = tuple(s1)
+ti1 = tuple (i1)
+t1 = tuple([ts1,ti1])
+cnt[t1]=0
+
+
+if t1 in cnt:
+    cnt[t1]+=1
+
+else:
+    cnt[t1]=1
+
+s2 = [1,2]
+i2 =[4,3]
+ts2 = tuple(s2)
+ti2 = tuple (i2)
+t2 = tuple([ts2,ti2])
+
+
+if t2 in cnt:
+    cnt[t2]+=1
+
+else:
+    cnt[t2]=1
+    
+ """   
