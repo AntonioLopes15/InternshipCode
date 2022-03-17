@@ -1,7 +1,6 @@
-# InternshipCode
-
 import numpy as np
 import math
+
 
 Sfinal = [0,0,0,0,0,0,0,0,0,0]
 
@@ -58,7 +57,7 @@ cntransicao = {}
 
 
 tempo=0
-for k in range (2):
+for k in range (1000):
         S0 = [100,100,100,100,100,100,100,100,100,100]
         E0 = [0,0,0,0,0,0,0,0,0,0]
         PreSym = [0,0,0,1,0,0,0,0,0,0]
@@ -69,7 +68,7 @@ for k in range (2):
         ICU =[0,0,0,0,0,0,0,0,0,0]
         Recov =[0,0,0,0,0,0,0,0,0,0]
         Deceas = [0,0,0,0,0,0,0,0,0,0]
-        for t in range (2):
+        for t in range (1000):
                 pstar = [] 
                 E1 = []
                 IPreSym1 = []
@@ -213,7 +212,7 @@ for k in range (2):
         
                 ttrans = tuple([tS0,tE0,tPreSym,tAsym,tMild,tSeve,tHosp,tICU,tRecov,tDeceas\
                                ,tS2,tE2,tPreSym2,tAsym2,tMild2,tSeve2,tHosp2,tICU2,tRecov2\
-                                 ,tDeceas])
+                                 ,tDeceas2])
                 
                 t0 = tuple([tS0,tE0,tPreSym,tAsym,tMild,tSeve,tHosp,tICU,tRecov,tDeceas])
         
@@ -246,12 +245,22 @@ for k in range (2):
 
         tempo+=1
         print(tempo)
+        
+        
+with open("internship.txt", 'w') as f:  
+    for key, value in cnt.items():  
+        f.write('%s:%s\n' % (key, value))
+
+with open("internship2.txt", 'w') as f:  
+    for key, value in cntransicao.items():  
+        f.write('%s:%s\n' % (key, value))
+        
 """        
         print ("step",t+1)
         print ("Suscetiveis:",S0,"Expostos:",E0,"Pré-Sintomáticos",PreSym,\
                "Assintomáticos",Asym,"Mild:",Mild,"Sevear:",Seve,"Hospitaliza"\
                    "dos:",Hosp,"ICU:",ICU,"Recuperados:",Recov,"Perdas:",Deceas)
- """       
+ 
 
 k=[]
 for l in range (10):
@@ -272,7 +281,7 @@ for i in range (10):
     
 mortalidade = (mortes / pessoastotal)*100
 
-
+"""
 
 
 
